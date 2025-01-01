@@ -1,6 +1,8 @@
 <template>
   <v-list density="compact">
-    <v-list-subheader class="my-3 text-h5 text-blue-grey-lighten-5">Username</v-list-subheader>
+    <v-list-subheader class="my-3 text-h5 text-blue-grey-lighten-5">{{
+      username
+    }}</v-list-subheader>
 
     <v-list-item v-for="(item, i) in items" :key="i" :value="item" color="primary">
       <template v-slot:prepend>
@@ -13,6 +15,10 @@
 </template>
 
 <script setup>
+import { inject } from 'vue'
+
+const username = inject('username')
+
 defineProps({
   items: {
     type: Array,

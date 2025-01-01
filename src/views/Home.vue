@@ -1,8 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
 import SideBar from '../layouts/SideBar.vue'
 import NavBar from '../layouts/NavBar.vue'
 import AlertMessage from '../components/AlertMessage.vue'
+
+provide('username', 'Muammar Rizal')
 
 const drawer = ref(false)
 const group = ref(null)
