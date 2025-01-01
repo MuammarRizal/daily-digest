@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import ListSideBar from './ListSideBar.vue'
+import ListSideBar from '../fragments/ListSideBar.vue'
 import { ref } from 'vue'
 
 const items = ref([
