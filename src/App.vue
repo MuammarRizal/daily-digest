@@ -1,85 +1,54 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
+const drawer = ref(false)
+const group = ref(null)
+const items = ref([
+  {
+    title: 'Foo',
+    value: 'foo',
+  },
+  {
+    title: 'Bar',
+    value: 'bar',
+  },
+  {
+    title: 'Fizz',
+    value: 'fizz',
+  },
+  {
+    title: 'Buzz',
+    value: 'buzz',
+  },
+])
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <v-layout>
+    <!-- navbar -->
+    <v-app-bar color="purple-darken-4" prominent>
+      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <v-toolbar-title>Admin News</v-toolbar-title>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+      <v-spacer></v-spacer>
 
-  <RouterView />
+      <template v-if="$vuetify.display.mdAndUp">
+        <v-btn icon="mdi-logout-variant" variant="text" color="red-darken-1"></v-btn>
+      </template>
+    </v-app-bar>
+
+    <!-- sidebar -->
+    <v-navigation-drawer
+      v-model="drawer"
+      :location="$vuetify.display.mobile ? 'bottom' : undefined"
+      color="purple-darken-2"
+    >
+      <v-list :items="items"></v-list>
+    </v-navigation-drawer>
+
+    <!-- main content -->
+    <v-main style="height: 500px">
+      <v-card-text> Ini bagian Content </v-card-text>
+    </v-main>
+  </v-layout>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
