@@ -1,25 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import SideBar from './components/SideBar.vue'
 const drawer = ref(false)
 const group = ref(null)
-const items = ref([
-  {
-    title: 'Foo',
-    value: 'foo',
-  },
-  {
-    title: 'Bar',
-    value: 'bar',
-  },
-  {
-    title: 'Fizz',
-    value: 'fizz',
-  },
-  {
-    title: 'Buzz',
-    value: 'buzz',
-  },
-])
 </script>
 
 <template>
@@ -38,13 +21,7 @@ const items = ref([
     </v-app-bar>
 
     <!-- sidebar -->
-    <v-navigation-drawer
-      v-model="drawer"
-      :location="$vuetify.display.mobile ? 'bottom' : undefined"
-      color="purple-darken-2"
-    >
-      <v-list :items="items"></v-list>
-    </v-navigation-drawer>
+    <SideBar v-model="drawer" />
 
     <!-- main content -->
     <v-main style="height: 500px">
