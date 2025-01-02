@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CategoryView from '@/views/Category.view.vue'
-import ProfileView from '@/views/Profile.view.vue'
-import NewsView from '@/views/News.view.vue'
-import DetailCategoryView from '@/views/DetailCategory.view.vue'
+import CategoryView from '@/views/admin/Category.view.vue'
+import ProfileView from '@/views/admin/Profile.view.vue'
+import NewsView from '@/views/admin/News.view.vue'
+import DetailCategoryView from '@/views/admin/DetailCategory.view.vue'
 import DashboardLayout from '@/layouts/admin/Dashboard.layout.vue'
-import DashboardView from '@/views/Dashboard.view.vue'
+import DashboardView from '@/views/admin/Dashboard.view.vue'
 import LandingPageLayout from '@/layouts/public/LandingPage.layout.vue'
-import LandingPageView from '@/views/LandingPage.view.vue'
+import LandingPageView from '@/views/public/LandingPage.view.vue'
+import LoginView from '@/views/public/Login.view.vue'
+import RegisterView from '@/views/public/Register.view.vue'
+import NotFoundView from '@/views/error/NotFound.view.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   // untuk user yang sudah login / admin
@@ -49,11 +52,28 @@ const router = createRouter({
       component: LandingPageLayout,
       children: [
         {
-          path: '/',
+          path: '',
           name: 'LandingPage',
           component: LandingPageView,
         },
+        {
+          path: 'login',
+          name: 'Login',
+          component: LoginView,
+        },
+        {
+          path: 'register',
+          name: 'Register',
+          component: RegisterView,
+        },
       ],
+    },
+
+    // Not Found
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFoundView,
     },
   ],
 })

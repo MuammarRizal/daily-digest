@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import AlertMessage from '../components/AlertMessage.vue'
+import AlertMessage from '../../components/AlertMessage.vue'
 
 const group = ref(null)
 const showError = ref(false)
