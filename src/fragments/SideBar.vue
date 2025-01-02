@@ -12,9 +12,9 @@ import ListSideBar from '../components/ListSideBar.vue'
 import { ref } from 'vue'
 
 const items = ref([
-  { text: 'Dashboard', icon: 'mdi-view-dashboard' },
-  { text: 'Category', icon: 'mdi-view-list' },
-  { text: 'News', icon: 'mdi-newspaper-variant-outline' },
-  { text: 'Profile', icon: 'mdi-account' },
+  { text: 'Dashboard', icon: 'mdi-view-dashboard', path: '/dashboard' },
+  { text: 'Category', icon: 'mdi-view-list', path: '/category' },
+  { text: 'News', icon: 'mdi-newspaper-variant-outline', path: '/news' },
+  { text: 'Profile', icon: 'mdi-account', path: '/profile' },
 ])
 </script>

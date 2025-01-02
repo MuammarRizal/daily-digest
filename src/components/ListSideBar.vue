@@ -4,7 +4,14 @@
       username
     }}</v-list-subheader>
 
-    <v-list-item v-for="(item, i) in items" :key="i" :value="item" color="primary">
+    <v-list-item
+      v-for="(item, i) in items"
+      :key="i"
+      :value="item"
+      color="primary"
+      :to="item.path"
+      class="text-decoration-none text-white"
+    >
       <template v-slot:prepend>
         <v-icon :icon="item.icon"></v-icon>
       </template>
