@@ -1,5 +1,5 @@
 <template>
-  <div class="icon-list d-flex">
+  <div class="icon-list d-flex flex-column">
     <template v-for="({ color, icon, href }, index) in attrIcon" :key="index">
       <IconComponent :color="color" :icon="icon" :href="href" />
     </template>
@@ -30,9 +30,14 @@
       <br />
     </form>
 
-    <ul>
-      <li v-for="data in dataUsers" :key="data.name">{{ data.name }}</li>
-    </ul>
+    <v-row>
+      <v-col cols="12">
+        <ul>
+          <li v-for="data in dataUsers" :key="data.name">{{ data.name }}</li>
+          <li>Jumlah data : {{ JumlahData }}</li>
+        </ul>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -40,7 +45,7 @@
 import IconComponent from '@/components/IconLink.component.vue'
 import useUserData from '@/stores/users'
 
-const { dataUsers, tambahData, inputUser } = useUserData()
+const { dataUsers, tambahData, inputUser, JumlahData } = useUserData()
 const attrIcon = [
   {
     color: 'error',
