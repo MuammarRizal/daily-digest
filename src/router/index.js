@@ -10,6 +10,20 @@ import LandingPageView from '@/views/public/LandingPage.view.vue'
 import LoginView from '@/views/public/Login.view.vue'
 import RegisterView from '@/views/public/Register.view.vue'
 import NotFoundView from '@/views/error/NotFound.view.vue'
+
+const login = false
+
+const AuthRequired = (to, from, next) => {
+  if (!login) {
+    alert('Login dulu browwww')
+    next({
+      name: 'Login',
+    })
+  } else {
+    next()
+  }
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   // untuk user yang sudah login / admin
@@ -17,6 +31,7 @@ const router = createRouter({
     {
       path: '/dashboard',
       component: DashboardLayout,
+      beforeEnter: AuthRequired,
       children: [
         {
           path: '',
