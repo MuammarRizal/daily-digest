@@ -34,7 +34,7 @@ const router = createRouter({
       beforeEnter: AuthRequired,
       children: [
         {
-          path: '',
+          path: './',
           name: 'Dashboard',
           component: DashboardView,
         },
