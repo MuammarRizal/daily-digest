@@ -11,7 +11,7 @@ import LoginView from '@/views/public/Login.view.vue'
 import RegisterView from '@/views/public/Register.view.vue'
 import NotFoundView from '@/views/error/NotFound.view.vue'
 
-const login = false
+const login = true
 
 const AuthRequired = (to, from, next) => {
   if (!login) {
