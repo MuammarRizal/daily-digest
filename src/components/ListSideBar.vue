@@ -9,7 +9,7 @@
       :key="i"
       :value="item"
       color="primary"
-      :to="item.path"
+      :to="{ name: `${item.pathName}` }"
       class="text-decoration-none text-white"
     >
       <template v-slot:prepend>
