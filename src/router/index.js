@@ -3,9 +3,9 @@ import CategoryView from '@/views/Category.view.vue'
 import ProfileView from '@/views/Profile.view.vue'
 import NewsView from '@/views/News.view.vue'
 import DetailCategoryView from '@/views/DetailCategory.view.vue'
-import DashboardLayout from '@/layouts/Dashboard.layout.vue'
+import DashboardLayout from '@/layouts/admin/Dashboard.layout.vue'
 import DashboardView from '@/views/Dashboard.view.vue'
-import LandingPageLayout from '@/layouts/LandingPage.layout.vue'
+import LandingPageLayout from '@/layouts/public/LandingPage.layout.vue'
 import LandingPageView from '@/views/LandingPage.view.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
