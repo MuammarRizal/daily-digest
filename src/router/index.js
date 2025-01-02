@@ -3,6 +3,7 @@ import HomeView from '../views/Home.view.vue'
 import CategoryView from '@/views/Category.view.vue'
 import ProfileView from '@/views/Profile.view.vue'
 import NewsView from '@/views/News.view.vue'
+import DetailCategoryView from '@/views/DetailCategory.view.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +32,11 @@ const router = createRouter({
       path: '/news',
       name: 'News',
       component: NewsView,
+    },
+    {
+      path: '/category/:name',
+      name: 'category-list',
+      component: DetailCategoryView,
     },
   ],
 })
