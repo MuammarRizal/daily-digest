@@ -1,15 +1,8 @@
 <script setup>
 import { provide } from 'vue'
-import ContentLayout from './layouts/Content.layout.vue'
-import HeaderLayout from './layouts/Header.layout.vue'
-provide('username', 'Muammar Rizal')
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <v-layout>
-    <!-- header -->
-    <HeaderLayout />
-    <!-- main content -->
-    <ContentLayout />
-  </v-layout>
+  <RouterView />
 </template>

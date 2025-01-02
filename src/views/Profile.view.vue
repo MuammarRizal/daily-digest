@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import IconComponent from '@/components/Icon.component.vue'
+import IconComponent from '@/components/IconLink.component.vue'
 const attrIcon = [
   {
     color: 'error',

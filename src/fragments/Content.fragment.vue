@@ -9,6 +9,3 @@ import { RouterView } from 'vue-router'
     </v-card-text>
   </v-main>
 </template>
-
-<!-- 
- -->

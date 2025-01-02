@@ -1,42 +1,59 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/Home.view.vue'
 import CategoryView from '@/views/Category.view.vue'
 import ProfileView from '@/views/Profile.view.vue'
 import NewsView from '@/views/News.view.vue'
 import DetailCategoryView from '@/views/DetailCategory.view.vue'
-
+import DashboardLayout from '@/layouts/Dashboard.layout.vue'
+import DashboardView from '@/views/Dashboard.view.vue'
+import LandingPageLayout from '@/layouts/LandingPage.layout.vue'
+import LandingPageView from '@/views/LandingPage.view.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  // untuk user yang sudah login / admin
   routes: [
     {
-      path: '/',
-      name: 'Home',
-      component: HomeView,
-    },
-    {
       path: '/dashboard',
-      name: 'Dashboard',
-      component: HomeView,
+      component: DashboardLayout,
+      children: [
+        {
+          path: '',
+          name: 'Dashboard',
+          component: DashboardView,
+        },
+        {
+          path: 'category',
+          name: 'Category',
+          component: CategoryView,
+        },
+        {
+          path: 'profile',
+          name: 'Profile',
+          component: ProfileView,
+        },
+        {
+          path: 'news',
+          name: 'News',
+          component: NewsView,
+        },
+        {
+          path: 'category/:name',
+          name: 'category-list',
+          component: DetailCategoryView,
+        },
+      ],
     },
+
+    //  untuk user yang belum login / public layout
     {
-      path: '/category',
-      name: 'Category',
-      component: CategoryView,
-    },
-    {
-      path: '/profile',
-      name: 'Profile',
-      component: ProfileView,
-    },
-    {
-      path: '/news',
-      name: 'News',
-      component: NewsView,
-    },
-    {
-      path: '/category/:name',
-      name: 'category-list',
-      component: DetailCategoryView,
+      path: '/',
+      component: LandingPageLayout,
+      children: [
+        {
+          path: '/',
+          name: 'LandingPage',
+          component: LandingPageView,
+        },
+      ],
     },
   ],
 })

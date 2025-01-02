@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import SideBar from '../fragments/SideBar.vue'
-import NavBar from '../fragments/NavBar.vue'
+import SideBar from './SideBar.fragment.vue'
+import NavBar from './NavBar.fragment.vue'
 
 const drawer = ref(true)
 
