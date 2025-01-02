@@ -1,4 +1,4 @@
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { defineStore } from 'pinia'
 const useUserData = defineStore('Users', () => {
   const dataUsers = ref([
@@ -27,7 +27,9 @@ const useUserData = defineStore('Users', () => {
     clearInput()
   }
 
-  return { dataUsers, tambahData, inputUser }
+  const JumlahData = computed(() => dataUsers.value.length)
+
+  return { dataUsers, tambahData, inputUser, JumlahData }
 })
 
 export default useUserData
