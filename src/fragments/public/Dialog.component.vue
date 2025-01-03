@@ -1,10 +1,12 @@
 <template>
   <v-dialog width="100%">
-    <v-card
-      prepend-icon="mdi-update"
-      text="Your application will relaunch automatically after the update is complete."
-      title="Update in progress"
-    >
+    <v-card>
+      <v-card-title>
+        <slot name="title" />
+      </v-card-title>
+      <v-card-text>
+        <slot name="content" />
+      </v-card-text>
     </v-card>
   </v-dialog>
 </template>
