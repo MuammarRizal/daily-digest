@@ -11,11 +11,11 @@
     </template>
     <template #content>
       <v-form @submit.prevent="onSubmit" v-model="form">
-        <v-text-field :rules="inputRules" label="Name" v-model="category.name" />
+        <v-text-field :rules="inputRules" label="Name" v-model="categoryInput.name" />
         <v-textarea
           :rules="inputRules"
           label="Description"
-          v-model="category.description"
+          v-model="categoryInput.description"
         ></v-textarea>
 
         <v-btn
@@ -28,7 +28,7 @@
       </v-form>
     </template>
   </DialogComponent>
-  <TableComponent :items="categoryDatas" />
+  <TableComponent :items="CategoryDatas" />
 </template>
 
 <script setup>
@@ -36,12 +36,20 @@ import TableComponent from '@/fragments/public/Table.component.vue'
 import DialogComponent from '@/fragments/public/Dialog.component.vue'
 import useCategoryStore from '@/stores/category.store'
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 
-// storeage
+// storage
 const CategoryStorage = useCategoryStore()
-const { categoryDatas, category, form, dialog, isLoading } = storeToRefs(CategoryStorage)
 
-const { onSubmit } = CategoryStorage
+// state
+const { CategoryDatas, categoryInput, form, dialog, isLoading } = storeToRefs(CategoryStorage)
+
+// actions
+const { onSubmit, snapDocs } = CategoryStorage
+
+onMounted(() => {
+  snapDocs()
+})
 
 // validation
 const inputRules = [
