@@ -1,6 +1,6 @@
 import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, getDocs, query } from 'firebase/firestore'
 import { db } from '@/config/firebase.config'
 
 const useCategoryStore = defineStore('Category', () => {
@@ -8,21 +8,7 @@ const useCategoryStore = defineStore('Category', () => {
   const dialog = ref(false)
   const form = ref(false)
   const isLoading = ref(false)
-
-  const categoryDatas = ref([
-    {
-      name: 'Frozen Yogurt',
-      calories: 159,
-    },
-    {
-      name: 'Ice cream sandwich',
-      calories: 237,
-    },
-    {
-      name: 'Eclair',
-      calories: 262,
-    },
-  ])
+  const CategoryDatas = ref([])
 
   const categoryInput = reactive({
     name: '',
@@ -55,7 +41,19 @@ const useCategoryStore = defineStore('Category', () => {
       isLoading.value = false
     }
   }
-  return { categoryDatas, dialog, form, onSubmit, category: categoryInput, isLoading }
+
+  const snapDocs = async () => {
+    const q = query(CategoryCollection)
+
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      CategoryDatas.value.push(doc.data())
+    })
+
+    console.log(CategoryDatas)
+  }
+  return { CategoryDatas, dialog, form, onSubmit, categoryInput, isLoading, snapDocs }
 })
 
 export default useCategoryStore
