@@ -7,6 +7,7 @@ const useCategoryStore = defineStore('Category', () => {
   const CategoryCollection = collection(db, 'categories')
   const dialog = ref(false)
   const form = ref(false)
+  const isLoading = ref(false)
 
   const categoryDatas = ref([
     {
@@ -34,20 +35,27 @@ const useCategoryStore = defineStore('Category', () => {
   }
 
   const onSubmit = async () => {
+    isLoading.value = true
     if (!form) return
     categoryDatas.value.push({
       name: categoryInput.name,
       colories: categoryInput.description,
     })
 
-    await addDoc(CategoryCollection, {
-      name: categoryInput.name,
-      description: categoryInput.description,
-    })
-    clearInput()
-    dialog.value = !dialog.value
+    try {
+      await addDoc(CategoryCollection, {
+        name: categoryInput.name,
+        description: categoryInput.description,
+      })
+      clearInput()
+      dialog.value = !dialog.value
+    } catch (error) {
+      alert('Error : ', error.message)
+    } finally {
+      isLoading.value = false
+    }
   }
-  return { categoryDatas, dialog, form, onSubmit, category: categoryInput }
+  return { categoryDatas, dialog, form, onSubmit, category: categoryInput, isLoading }
 })
 
 export default useCategoryStore
