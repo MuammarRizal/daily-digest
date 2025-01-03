@@ -10,10 +10,10 @@
       </div>
     </template>
     <template #content>
-      <v-form @submit.prevent="onSubmit">
-        <v-text-field label="Name" v-model="category.name" />
-        <v-textarea label="Last name" v-model="category.lastname"></v-textarea>
-        <v-btn width="100%" color="green" type="submit">Tambah Data</v-btn>
+      <v-form @submit.prevent="onSubmit" v-model="form">
+        <v-text-field :rules="inputRules" label="Name" v-model="category.name" />
+        <v-textarea :rules="inputRules" label="Last name" v-model="category.lastname"></v-textarea>
+        <v-btn width="100%" color="green" type="submit" :disabled="!form">Tambah Data</v-btn>
       </v-form>
     </template>
   </DialogComponent>
@@ -25,6 +25,7 @@ import { reactive, ref } from 'vue'
 import TableComponent from '@/fragments/public/Table.component.vue'
 import DialogComponent from '@/fragments/public/Dialog.component.vue'
 const dialog = ref(false)
+const form = ref(false)
 
 const desserts = ref([
   {
@@ -45,12 +46,23 @@ const category = reactive({
   lastname: '',
 })
 
+// validation
+const inputRules = [
+  (value) => {
+    if (value) {
+      return true
+    }
+    return 'Inputan harus diisi'
+  },
+]
+
 const clearInput = () => {
   category.name = ''
   category.lastname = ''
 }
 
 const onSubmit = () => {
+  if (!form) return
   desserts.value.push({
     name: category.name,
     colories: category.lastname,
