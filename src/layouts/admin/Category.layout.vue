@@ -17,34 +17,20 @@
       </v-form>
     </template>
   </DialogComponent>
-  <TableComponent :items="desserts" />
+  <TableComponent :items="categoryDatas" />
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
 import TableComponent from '@/fragments/public/Table.component.vue'
 import DialogComponent from '@/fragments/public/Dialog.component.vue'
-const dialog = ref(false)
-const form = ref(false)
+import useCategoryStore from '@/stores/category.store'
+import { storeToRefs } from 'pinia'
 
-const desserts = ref([
-  {
-    name: 'Frozen Yogurt',
-    calories: 159,
-  },
-  {
-    name: 'Ice cream sandwich',
-    calories: 237,
-  },
-  {
-    name: 'Eclair',
-    calories: 262,
-  },
-])
-const category = reactive({
-  name: '',
-  lastname: '',
-})
+// storeage
+const CategoryStorage = useCategoryStore()
+const { categoryDatas, category, form, dialog } = storeToRefs(CategoryStorage)
+
+const { onSubmit } = CategoryStorage
 
 // validation
 const inputRules = [
@@ -55,20 +41,4 @@ const inputRules = [
     return 'Inputan harus diisi'
   },
 ]
-
-const clearInput = () => {
-  category.name = ''
-  category.lastname = ''
-}
-
-const onSubmit = () => {
-  if (!form) return
-  desserts.value.push({
-    name: category.name,
-    colories: category.lastname,
-  })
-
-  clearInput()
-  dialog.value = !dialog.value
-}
 </script>
