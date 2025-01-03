@@ -1,7 +1,10 @@
 import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
+import { addDoc, collection } from 'firebase/firestore'
+import { db } from '@/config/firebase.config'
 
 const useCategoryStore = defineStore('Category', () => {
+  const CategoryCollection = collection(db, 'categories')
   const dialog = ref(false)
   const form = ref(false)
 
@@ -22,21 +25,25 @@ const useCategoryStore = defineStore('Category', () => {
 
   const categoryInput = reactive({
     name: '',
-    lastname: '',
+    description: '',
   })
 
   const clearInput = () => {
     categoryInput.name = ''
-    categoryInput.lastname = ''
+    categoryInput.description = ''
   }
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!form) return
     categoryDatas.value.push({
       name: categoryInput.name,
-      colories: categoryInput.lastname,
+      colories: categoryInput.description,
     })
 
+    await addDoc(CategoryCollection, {
+      name: categoryInput.name,
+      description: categoryInput.description,
+    })
     clearInput()
     dialog.value = !dialog.value
   }

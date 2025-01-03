@@ -12,7 +12,11 @@
     <template #content>
       <v-form @submit.prevent="onSubmit" v-model="form">
         <v-text-field :rules="inputRules" label="Name" v-model="category.name" />
-        <v-textarea :rules="inputRules" label="Last name" v-model="category.lastname"></v-textarea>
+        <v-textarea
+          :rules="inputRules"
+          label="Description"
+          v-model="category.description"
+        ></v-textarea>
         <v-btn width="100%" color="green" type="submit" :disabled="!form">Tambah Data</v-btn>
       </v-form>
     </template>
