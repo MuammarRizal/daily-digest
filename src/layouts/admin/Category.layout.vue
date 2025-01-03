@@ -17,7 +17,14 @@
           label="Description"
           v-model="category.description"
         ></v-textarea>
-        <v-btn width="100%" color="green" type="submit" :disabled="!form">Tambah Data</v-btn>
+
+        <v-btn
+          width="100%"
+          :color="isLoading ? 'red' : 'green'"
+          type="submit"
+          :disabled="!form || isLoading"
+          >{{ isLoading ? 'Loading ...' : 'Tambah Data' }}</v-btn
+        >
       </v-form>
     </template>
   </DialogComponent>
@@ -32,7 +39,7 @@ import { storeToRefs } from 'pinia'
 
 // storeage
 const CategoryStorage = useCategoryStore()
-const { categoryDatas, category, form, dialog } = storeToRefs(CategoryStorage)
+const { categoryDatas, category, form, dialog, isLoading } = storeToRefs(CategoryStorage)
 
 const { onSubmit } = CategoryStorage
 
