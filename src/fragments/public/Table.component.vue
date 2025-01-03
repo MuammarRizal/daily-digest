@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in desserts" :key="item.name">
+      <tr v-for="(item, index) in items" :key="item.name">
         <td>{{ index + 1 }}</td>
         <td>{{ item.name }}</td>
         <td class="d-flex justify-center ga-2 align-center">
@@ -22,47 +22,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const desserts = ref([
-  {
-    name: 'Frozen Yogurt',
-    calories: 159,
+import { defineProps } from 'vue'
+defineProps({
+  items: {
+    type: Array,
+    required: true,
   },
-  {
-    name: 'Ice cream sandwich',
-    calories: 237,
-  },
-  {
-    name: 'Eclair',
-    calories: 262,
-  },
-  {
-    name: 'Cupcake',
-    calories: 305,
-  },
-  {
-    name: 'Gingerbread',
-    calories: 356,
-  },
-  {
-    name: 'Jelly bean',
-    calories: 375,
-  },
-  {
-    name: 'Lollipop',
-    calories: 392,
-  },
-  {
-    name: 'Honeycomb',
-    calories: 408,
-  },
-  {
-    name: 'Donut',
-    calories: 452,
-  },
-  {
-    name: 'KitKat',
-    calories: 518,
-  },
-])
+})
 </script>
