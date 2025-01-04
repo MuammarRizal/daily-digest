@@ -75,13 +75,12 @@ const useCategoryStore = defineStore('Category', () => {
   const deleteData = (id) => {
     dialogDelete.value = true
     categoryInput.id = id
-    console.log(categoryInput)
-    // clearInput()
   }
 
   const destroyData = async (id) => {
     await deleteDoc(doc(CategoryCollection, id))
-    clearInput()
+    categoryInput.id = ''
+    dialogDelete.value = false
     snapDocs()
   }
   const snapDocs = async () => {
