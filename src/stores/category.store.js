@@ -1,6 +1,6 @@
 import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
-import { addDoc, collection, getDocs, query } from 'firebase/firestore'
+import { addDoc, collection, doc, getDocs, query, updateDoc } from 'firebase/firestore'
 import { db } from '@/config/firebase.config'
 
 const useCategoryStore = defineStore('Category', () => {
@@ -29,6 +29,7 @@ const useCategoryStore = defineStore('Category', () => {
     categoryInput.isUpdate = true
     dialog.value = true
     categoryInput.name = item.name
+    categoryInput.id = item.id
     categoryInput.description = item.description
   }
 
@@ -47,29 +48,34 @@ const useCategoryStore = defineStore('Category', () => {
     })
 
     try {
-      await addDoc(CategoryCollection, {
-        name: categoryInput.name,
-        description: categoryInput.description,
-      })
+      console.log(categoryInput)
+      if (categoryInput.isUpdate) {
+        await updateDoc(doc(CategoryCollection, categoryInput.id), {
+          name: categoryInput.name,
+          description: categoryInput.description,
+        })
+      } else {
+        await addDoc(CategoryCollection, {
+          name: categoryInput.name,
+          description: categoryInput.description,
+        })
+      }
       clearInput()
       dialog.value = false
     } catch (error) {
       alert('Error : ', error.message)
+      console.log(error)
     } finally {
       isLoading.value = false
     }
   }
 
   const snapDocs = async () => {
-    const q = query(CategoryCollection)
-
-    const querySnapshot = await getDocs(q)
+    const querySnapshot = await getDocs(CategoryCollection)
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       CategoryDatas.value.push({ ...doc.data(), id: doc.id })
     })
-
-    console.log(CategoryDatas)
   }
   return {
     CategoryDatas,

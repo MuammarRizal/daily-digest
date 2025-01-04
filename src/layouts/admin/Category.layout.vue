@@ -48,7 +48,7 @@ import TableComponent from '@/fragments/public/Table.component.vue'
 import DialogComponent from '@/fragments/public/Dialog.component.vue'
 import useCategoryStore from '@/stores/category.store'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
+import { onMounted, onUpdated } from 'vue'
 
 // storage
 const CategoryStorage = useCategoryStore()
