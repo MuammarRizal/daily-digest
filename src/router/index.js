@@ -7,9 +7,9 @@ import DashboardLayout from '@/layouts/admin/Dashboard.layout.vue'
 import DashboardView from '@/views/admin/Dashboard.view.vue'
 import LandingPageLayout from '@/layouts/public/LandingPage.layout.vue'
 import LandingPageView from '@/views/public/LandingPage.view.vue'
-import LoginView from '@/views/public/Login.view.vue'
-import RegisterView from '@/views/public/Register.view.vue'
 import NotFoundView from '@/views/error/NotFound.view.vue'
+import LoginView from '@/views/auth/Login.view.vue'
+import RegisterView from '@/views/auth/Register.view.vue'
 
 const login = true
 

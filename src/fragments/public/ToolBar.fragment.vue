@@ -5,7 +5,7 @@
     <v-spacer />
 
     <v-toolbar-items>
-      <v-btn flat v-for="item in items" :key="item.title">
+      <v-btn flat v-for="item in items" :key="item.title" :to="{ name: `${item.pathName}` }">
         <v-icon left>{{ item.icon }}</v-icon>
         <span>{{ item.title }}</span>
       </v-btn>
@@ -15,8 +15,8 @@
 
 <script setup>
 const items = [
-  { title: 'Category', icon: 'mdi-newspaper' },
-  { title: 'login', icon: 'mdi-login' },
-  { title: 'Register', icon: 'mdi-account-plus' },
+  { title: 'Category', icon: 'mdi-newspaper', pathName: 'Category' },
+  { title: 'login', icon: 'mdi-login', pathName: 'Login' },
+  { title: 'Register', icon: 'mdi-account-plus', pathName: 'Register' },
 ]
 </script>
