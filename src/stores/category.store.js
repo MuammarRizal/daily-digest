@@ -19,7 +19,7 @@ const useCategoryStore = defineStore('Category', () => {
   })
 
   const clearInput = () => {
-    dialog.value = !dialog.value
+    dialog.value = true
     categoryInput.name = ''
     categoryInput.description = ''
   }
@@ -44,7 +44,7 @@ const useCategoryStore = defineStore('Category', () => {
         description: categoryInput.description,
       })
       clearInput()
-      dialog.value = !dialog.value
+      dialog.value = false
     } catch (error) {
       alert('Error : ', error.message)
     } finally {
