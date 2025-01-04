@@ -43,7 +43,7 @@
 
 <script setup>
 import IconComponent from '@/components/IconLink.component.vue'
-import useUserData from '@/stores/users.store'
+import useUserData from '@/stores/users/users.store'
 
 const { dataUsers, tambahData, inputUser, JumlahData } = useUserData()
 const attrIcon = [

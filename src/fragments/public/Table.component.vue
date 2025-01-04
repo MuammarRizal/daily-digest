@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import useCategoryStore from '@/stores/category.store'
+import useCategoryStore from '@/stores/category/category.store'
 import { storeToRefs } from 'pinia'
 import { defineProps } from 'vue'
 

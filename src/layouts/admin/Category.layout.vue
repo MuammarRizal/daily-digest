@@ -65,7 +65,7 @@
 <script setup>
 import TableComponent from '@/fragments/public/Table.component.vue'
 import DialogComponent from '@/fragments/public/Dialog.component.vue'
-import useCategoryStore from '@/stores/category.store'
+import useCategoryStore from '@/stores/category/category.store'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 
