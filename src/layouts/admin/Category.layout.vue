@@ -5,7 +5,7 @@
   <DialogComponent v-model="dialog" width="50%">
     <template #title>
       <div class="title-dialog d-flex justify-space-between">
-        <h3>Tambah Data</h3>
+        <h3>{{ !categoryInput.isUpdate ? 'Tambah Data' : 'Update Data' }}</h3>
         <v-btn @click="dialog = !dialog" icon="mdi-window-close" color="red" />
       </div>
     </template>
@@ -23,7 +23,7 @@
           :color="isLoading ? 'red' : 'green'"
           type="submit"
           :disabled="!form || isLoading"
-          >{{ isLoading ? 'Loading ...' : 'Tambah Data' }}</v-btn
+          >{{ !categoryInput.isUpdate ? 'Tambah' : 'Update' }}</v-btn
         >
       </v-form>
     </template>
