@@ -28,6 +28,18 @@
       </v-form>
     </template>
   </DialogComponent>
+
+  <DialogComponent v-model="dialogDetail" width="50%">
+    <template #title>
+      <div class="title-dialog d-flex justify-space-between">
+        <h3>{{ categoryInput.name }}</h3>
+        <v-btn @click="dialogDetail = !dialogDetail" icon="mdi-window-close" color="red" />
+      </div>
+    </template>
+    <template #content>
+      <p>{{ categoryInput.description }}</p>
+    </template>
+  </DialogComponent>
   <TableComponent :items="CategoryDatas" />
 </template>
 
@@ -42,7 +54,8 @@ import { onMounted } from 'vue'
 const CategoryStorage = useCategoryStore()
 
 // state
-const { CategoryDatas, categoryInput, form, dialog, isLoading } = storeToRefs(CategoryStorage)
+const { CategoryDatas, categoryInput, form, dialog, isLoading, dialogDetail } =
+  storeToRefs(CategoryStorage)
 
 // actions
 const { onSubmit, snapDocs } = CategoryStorage
