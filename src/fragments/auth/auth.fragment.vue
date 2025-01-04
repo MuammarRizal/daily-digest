@@ -15,14 +15,14 @@
       <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
         Password
 
-        <a
+        <router-link
           v-if="login"
           class="text-caption text-decoration-none text-blue"
-          href="#"
+          to="#"
           rel="noopener noreferrer"
           target="_blank"
         >
-          Forgot login password?</a
+          Forgot login password?</router-link
         >
       </div>
 
