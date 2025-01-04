@@ -13,7 +13,12 @@
         <td>{{ item.name }}</td>
         <td class="d-flex justify-center ga-2 align-center">
           <v-btn size="x-small" icon="mdi-pencil-outline" class="bg-yellow-darken-2" />
-          <v-btn size="x-small" icon="mdi-information-variant" class="bg-green-darken-2" />
+          <v-btn
+            size="x-small"
+            icon="mdi-information-variant"
+            class="bg-green-darken-2"
+            @click="getDataDetail(item)"
+          />
           <v-btn size="x-small" icon="mdi-trash-can" class="bg-red-darken-2" />
         </td>
       </tr>
@@ -22,7 +27,14 @@
 </template>
 
 <script setup>
+import useCategoryStore from '@/stores/category.store'
 import { defineProps } from 'vue'
+
+// store
+const CategoryStore = useCategoryStore()
+
+// actions
+const { getDataDetail } = CategoryStore
 defineProps({
   items: {
     type: Array,
