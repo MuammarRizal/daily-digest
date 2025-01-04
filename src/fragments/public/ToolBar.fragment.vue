@@ -1,6 +1,8 @@
 <template>
   <v-toolbar app class="bg-blue-lighten-4">
-    <RouterLink :to="{ name: 'LandingPage' }">Rizal</RouterLink>
+    <RouterLink :to="{ name: 'LandingPage' }">
+      <img :src="ImgIcon" alt="Muammar Rizal Icon" width="90" class="ms-10" />
+    </RouterLink>
 
     <v-spacer />
 
@@ -14,6 +16,7 @@
 </template>
 
 <script setup>
+import ImgIcon from '@/assets/icon-mmr.jpg'
 const items = [
   { title: 'Category', icon: 'mdi-newspaper', pathName: 'Category' },
   { title: 'login', icon: 'mdi-login', pathName: 'Login' },
