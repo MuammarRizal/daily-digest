@@ -12,22 +12,30 @@ const useCategoryStore = defineStore('Category', () => {
   const dialogDetail = ref(false)
 
   const categoryInput = reactive({
-    // id: new Date.now(Math.random(Math.floor)),
+    id: '',
     name: '',
     description: '',
     isUpdate: false,
   })
 
   const clearInput = () => {
+    categoryInput.isUpdate = false
     dialog.value = true
     categoryInput.name = ''
     categoryInput.description = ''
   }
 
+  const updateData = (item) => {
+    categoryInput.isUpdate = true
+    dialog.value = true
+    categoryInput.name = item.name
+    categoryInput.description = item.description
+  }
+
   const getDataDetail = (item) => {
     dialogDetail.value = true
     categoryInput.name = item.name
-    categoryInput.description = item.name
+    categoryInput.description = item.description
   }
 
   const onSubmit = async () => {
@@ -35,7 +43,7 @@ const useCategoryStore = defineStore('Category', () => {
     if (!form) return
     CategoryDatas.value.push({
       name: categoryInput.name,
-      colories: categoryInput.description,
+      description: categoryInput.description,
     })
 
     try {
@@ -58,7 +66,7 @@ const useCategoryStore = defineStore('Category', () => {
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      CategoryDatas.value.push(doc.data())
+      CategoryDatas.value.push({ ...doc.data(), id: doc.id })
     })
 
     console.log(CategoryDatas)
@@ -74,6 +82,7 @@ const useCategoryStore = defineStore('Category', () => {
     getDataDetail,
     dialogDetail,
     clearInput,
+    updateData,
   }
 })
 
