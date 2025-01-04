@@ -1,6 +1,6 @@
 <template>
   <v-row justify="end">
-    <v-btn @click="dialog = !dialog" icon="mdi-plus" class="mb-6 bg-blue-grey-darken-3" />
+    <v-btn @click="clearInput" icon="mdi-plus" class="mb-6 bg-blue-grey-darken-3" />
   </v-row>
   <DialogComponent v-model="dialog" width="50%">
     <template #title>
@@ -58,7 +58,7 @@ const { CategoryDatas, categoryInput, form, dialog, isLoading, dialogDetail } =
   storeToRefs(CategoryStorage)
 
 // actions
-const { onSubmit, snapDocs } = CategoryStorage
+const { onSubmit, snapDocs, clearInput } = CategoryStorage
 
 onMounted(() => {
   snapDocs()

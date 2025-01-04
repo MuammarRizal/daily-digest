@@ -12,11 +12,14 @@ const useCategoryStore = defineStore('Category', () => {
   const dialogDetail = ref(false)
 
   const categoryInput = reactive({
+    // id: new Date.now(Math.random(Math.floor)),
     name: '',
     description: '',
+    isUpdate: false,
   })
 
   const clearInput = () => {
+    dialog.value = !dialog.value
     categoryInput.name = ''
     categoryInput.description = ''
   }
@@ -70,6 +73,7 @@ const useCategoryStore = defineStore('Category', () => {
     snapDocs,
     getDataDetail,
     dialogDetail,
+    clearInput,
   }
 })
 
