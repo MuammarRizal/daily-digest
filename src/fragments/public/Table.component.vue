@@ -12,7 +12,12 @@
         <td>{{ index + 1 }}</td>
         <td>{{ item.name }}</td>
         <td class="d-flex justify-center ga-2 align-center">
-          <v-btn size="x-small" icon="mdi-pencil-outline" class="bg-yellow-darken-2" />
+          <v-btn
+            size="x-small"
+            icon="mdi-pencil-outline"
+            class="bg-yellow-darken-2"
+            @click="updateData(item)"
+          />
           <v-btn
             size="x-small"
             icon="mdi-information-variant"
@@ -34,7 +39,7 @@ import { defineProps } from 'vue'
 const CategoryStore = useCategoryStore()
 
 // actions
-const { getDataDetail } = CategoryStore
+const { getDataDetail, updateData } = CategoryStore
 defineProps({
   items: {
     type: Array,
