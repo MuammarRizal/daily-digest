@@ -33,7 +33,7 @@ const useCategoryStore = defineStore('Category', () => {
   const onSubmit = async () => {
     isLoading.value = true
     if (!form) return
-    categoryDatas.value.push({
+    CategoryDatas.value.push({
       name: categoryInput.name,
       colories: categoryInput.description,
     })
