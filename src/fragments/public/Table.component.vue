@@ -50,7 +50,6 @@ const { dialogDelete } = storeToRefs(CategoryStore)
 const { getDataDetail, updateData, deleteData } = CategoryStore
 defineProps({
   items: {
-    type: Array,
     required: true,
   },
 })
