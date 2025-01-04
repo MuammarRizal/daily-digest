@@ -8,7 +8,7 @@ const useCategoryStore = defineStore('Category', () => {
   const dialog = ref(false)
   const form = ref(false)
   const isLoading = ref(false)
-  const CategoryDatas = ref([])
+  const CategoryDatas = ref(null)
   const dialogDetail = ref(false)
 
   const categoryInput = reactive({
@@ -62,6 +62,7 @@ const useCategoryStore = defineStore('Category', () => {
       }
       clearInput()
       dialog.value = false
+      snapDocs()
     } catch (error) {
       alert('Error : ', error.message)
       console.log(error)
@@ -72,9 +73,10 @@ const useCategoryStore = defineStore('Category', () => {
 
   const snapDocs = async () => {
     const querySnapshot = await getDocs(CategoryCollection)
-    querySnapshot.forEach((doc) => {
+    CategoryDatas.value = querySnapshot.docs.map((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      CategoryDatas.value.push({ ...doc.data(), id: doc.id })
+      return { id: doc.id, ...doc.data() }
+      // console.log(doc.id, '=>', doc.data())
     })
   }
   return {
