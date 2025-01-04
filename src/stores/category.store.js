@@ -9,6 +9,7 @@ const useCategoryStore = defineStore('Category', () => {
   const form = ref(false)
   const isLoading = ref(false)
   const CategoryDatas = ref([])
+  const dialogDetail = ref(false)
 
   const categoryInput = reactive({
     name: '',
@@ -18,6 +19,12 @@ const useCategoryStore = defineStore('Category', () => {
   const clearInput = () => {
     categoryInput.name = ''
     categoryInput.description = ''
+  }
+
+  const getDataDetail = (item) => {
+    dialogDetail.value = true
+    categoryInput.name = item.name
+    categoryInput.description = item.name
   }
 
   const onSubmit = async () => {
@@ -53,7 +60,17 @@ const useCategoryStore = defineStore('Category', () => {
 
     console.log(CategoryDatas)
   }
-  return { CategoryDatas, dialog, form, onSubmit, categoryInput, isLoading, snapDocs }
+  return {
+    CategoryDatas,
+    dialog,
+    form,
+    onSubmit,
+    categoryInput,
+    isLoading,
+    snapDocs,
+    getDataDetail,
+    dialogDetail,
+  }
 })
 
 export default useCategoryStore
