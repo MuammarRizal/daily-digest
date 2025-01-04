@@ -24,7 +24,12 @@
             class="bg-green-darken-2"
             @click="getDataDetail(item)"
           />
-          <v-btn size="x-small" icon="mdi-trash-can" class="bg-red-darken-2" />
+          <v-btn
+            size="x-small"
+            icon="mdi-trash-can"
+            class="bg-red-darken-2"
+            @click="deleteData(item.id)"
+          />
         </td>
       </tr>
     </tbody>
@@ -33,13 +38,16 @@
 
 <script setup>
 import useCategoryStore from '@/stores/category.store'
+import { storeToRefs } from 'pinia'
 import { defineProps } from 'vue'
 
 // store
 const CategoryStore = useCategoryStore()
 
+const { dialogDelete } = storeToRefs(CategoryStore)
+
 // actions
-const { getDataDetail, updateData } = CategoryStore
+const { getDataDetail, updateData, deleteData } = CategoryStore
 defineProps({
   items: {
     type: Array,

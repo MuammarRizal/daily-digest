@@ -1,6 +1,6 @@
 import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
-import { addDoc, collection, doc, getDocs, query, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc } from 'firebase/firestore'
 import { db } from '@/config/firebase.config'
 
 const useCategoryStore = defineStore('Category', () => {
@@ -10,6 +10,7 @@ const useCategoryStore = defineStore('Category', () => {
   const isLoading = ref(false)
   const CategoryDatas = ref(null)
   const dialogDetail = ref(false)
+  const dialogDelete = ref(false)
 
   const categoryInput = reactive({
     id: '',
@@ -71,6 +72,18 @@ const useCategoryStore = defineStore('Category', () => {
     }
   }
 
+  const deleteData = (id) => {
+    dialogDelete.value = true
+    categoryInput.id = id
+    console.log(categoryInput)
+    // clearInput()
+  }
+
+  const destroyData = async (id) => {
+    await deleteDoc(doc(CategoryCollection, id))
+    clearInput()
+    snapDocs()
+  }
   const snapDocs = async () => {
     const querySnapshot = await getDocs(CategoryCollection)
     CategoryDatas.value = querySnapshot.docs.map((doc) => {
@@ -91,6 +104,9 @@ const useCategoryStore = defineStore('Category', () => {
     dialogDetail,
     clearInput,
     updateData,
+    dialogDelete,
+    deleteData,
+    destroyData,
   }
 })
 
